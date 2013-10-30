@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     metadata-complete="true">
  
-  <!-- To save as "ebookshop\WEB-INF\web.xml" -->
+
   <servlet>
     <servlet-name>EBookShopQueryServlet</servlet-name>
     <servlet-class>net.bitacademy.java45.servlets.EshopQueryServlet</servlet-class>
