@@ -19,7 +19,7 @@ public class BooksDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 	        conn = DriverManager.getConnection(
-	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  // <<== Check
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
 	        stmt = conn.createStatement();
 	         
 	        String sqlStr = "SELECT * FROM books WHERE";
@@ -70,7 +70,7 @@ public class BooksDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 	        conn = DriverManager.getConnection(
-	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  // <<== Check
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
 	        stmt = conn.createStatement();
 	         
 	        String sqlStr = "SELECT * FROM books WHERE id=" + id;
