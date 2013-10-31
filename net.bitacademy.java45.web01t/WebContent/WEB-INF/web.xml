@@ -3,7 +3,7 @@
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-    metadata-complete="true">
+    metadata-complete="false">
  
 
   <servlet>
@@ -15,6 +15,11 @@
     <servlet-name>EBookShopOrderServlet</servlet-name>
     <servlet-class>net.bitacademy.java45.servlets.EshopOrderServlet</servlet-class>
   </servlet>
+  
+<!--    <servlet>
+    <servlet-name>BookListServlet</servlet-name>
+    <servlet-class>net.bitacademy.java45.servlets.book.BookListServlet</servlet-class>
+  </servlet> -->
  
   <!-- Note: All <servlet> elements must be placed
        in front of <servlet-mapping> elements -->
@@ -29,4 +34,8 @@
     <url-pattern>/eshoporder</url-pattern>
   </servlet-mapping>
 
+<!--   <servlet-mapping>
+    <servlet-name>BookListServlet</servlet-name>
+    <url-pattern>/book/list</url-pattern>
+  </servlet-mapping> -->
 </web-app>
