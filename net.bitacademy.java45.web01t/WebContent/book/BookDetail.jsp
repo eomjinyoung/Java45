@@ -4,13 +4,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><title>책 목록</title></head><body>
-<h2>책 목록3</h2>
+<html><head><title>책 상세정보</title></head><body>
+<h2>책 상세정보</h2>
 
-<c:forEach var="book" items="${requestScope.list}">
-	<p><input type='checkbox' name='id' value='${book.id}' />
-	${book.author}, 
-	<a href="detail?id=${book.id}">${book.title}</a>, 
-	$${book.price}</p>
-</c:forEach>
+<c:if test="${!empty book}">
+아이디: ${book.id}<br>
+저자: ${book.author}<br> 
+제목: ${book.title}<br> 
+가격: $${book.price}<br>
+</c:if>
+
 </body></html>

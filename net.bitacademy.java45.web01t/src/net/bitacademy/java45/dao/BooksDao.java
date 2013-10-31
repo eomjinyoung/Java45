@@ -10,11 +10,7 @@ import java.util.List;
 import net.bitacademy.java45.vo.Book;
 
 public class BooksDao {
-	/**
-	 * @param keywords
-	 * @return
-	 * @throws Exception
-	 */
+
 	public List<Book> select(String[] keywords) throws Exception {
 		Connection conn = null;
 	    Statement stmt = null;
@@ -55,6 +51,42 @@ public class BooksDao {
 	        }
 	        
 	        return list;
+	        
+		} catch (Exception e) {
+			throw e;
+			
+		} finally {
+			try {if (rset != null) rset.close();} catch(Exception e) {}
+			try {if (stmt != null) stmt.close();} catch(Exception e) {}
+	        try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+	}
+
+	public Book selectOne(int id) throws Exception {
+		Connection conn = null;
+	    Statement stmt = null;
+	    ResultSet rset = null;
+	    
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  // <<== Check
+	        stmt = conn.createStatement();
+	         
+	        String sqlStr = "SELECT * FROM books WHERE id=" + id;
+	        
+	        rset = stmt.executeQuery(sqlStr);
+	        
+	        Book book = null;
+	        
+	        if (rset.next()) {
+	            book = new Book();
+	            book.setId(rset.getInt("id"));
+	            book.setTitle(rset.getString("title"));
+	            book.setAuthor(rset.getString("author"));
+	            book.setPrice(rset.getFloat("price"));
+	        }
+	        return book;
 	        
 		} catch (Exception e) {
 			throw e;
