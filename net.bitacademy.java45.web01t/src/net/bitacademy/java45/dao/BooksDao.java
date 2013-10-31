@@ -3,7 +3,6 @@ package net.bitacademy.java45.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class BooksDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Book> select(List<String> keywords) throws Exception {
+	public List<Book> select(String[] keywords) throws Exception {
 		Connection conn = null;
 	    Statement stmt = null;
 	    ResultSet rset = null;
@@ -28,17 +27,17 @@ public class BooksDao {
 	        stmt = conn.createStatement();
 	         
 	        String sqlStr = "SELECT * FROM books WHERE";
-	        if (keywords.size() > 0) {
-	        	sqlStr += "author IN (";
-	        	for(int i = 0; i < keywords.size(); i++) {
+	        if (keywords != null && keywords.length > 0) {
+	        	sqlStr += " author IN (";
+	        	for(int i = 0; i < keywords.length; i++) {
 	        		if (i > 0) {
 	        			sqlStr += ",";
 	        		}
-	        		sqlStr += "'" + keywords.get(i) + "'";
+	        		sqlStr += "'" + keywords[i] + "'";
 	        	}
 	        	sqlStr += ") AND";
 	        }
-	        sqlStr += "qty > 0 ORDER BY author ASC, title ASC";
+	        sqlStr += " qty > 0 ORDER BY author ASC, title ASC";
 	        
 	        rset = stmt.executeQuery(sqlStr);
 	        
