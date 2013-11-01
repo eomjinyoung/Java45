@@ -31,7 +31,7 @@ public class EshopQueryServlet extends HttpServlet {  // JDK 6 and above only
 
 		BooksDao booksDao = new BooksDao();
 		try {
-			List<Book> list = booksDao.select(authors);
+			List<Book> list = booksDao.selectList(authors);
 	
 			for(Book book : list) {
 				out.println("<p><input type='checkbox' name='id' value="

@@ -7,8 +7,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
  
 public class EshopOrderServlet extends HttpServlet {  // JDK 6 and above only
- 
-   // The doGet() runs once per HTTP GET request to this servlet.
+	private static final long serialVersionUID = 1L;
+
+// The doGet() runs once per HTTP GET request to this servlet.
    @Override
    public void doGet(HttpServletRequest request, HttpServletResponse response)
                      throws ServletException, IOException {

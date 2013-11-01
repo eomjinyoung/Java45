@@ -1,7 +1,6 @@
 package net.bitacademy.java45.servlets.book;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +14,8 @@ import net.bitacademy.java45.vo.Book;
 
 @WebServlet("/book/detail")
 public class BookDetailServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(
 			HttpServletRequest request, HttpServletResponse response)

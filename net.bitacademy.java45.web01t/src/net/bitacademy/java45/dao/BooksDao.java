@@ -11,7 +11,7 @@ import net.bitacademy.java45.vo.Book;
 
 public class BooksDao {
 
-	public List<Book> select(String[] keywords) throws Exception {
+	public List<Book> selectList(String[] keywords) throws Exception {
 		Connection conn = null;
 	    Statement stmt = null;
 	    ResultSet rset = null;
@@ -38,16 +38,13 @@ public class BooksDao {
 	        rset = stmt.executeQuery(sqlStr);
 	        
 	        ArrayList<Book> list = new ArrayList<Book>();
-	        Book book = null;
 	        
 	        while(rset.next()) {
-	            book = new Book();
-	            book.setId(rset.getInt("id"));
-	            book.setTitle(rset.getString("title"));
-	            book.setAuthor(rset.getString("author"));
-	            book.setPrice(rset.getFloat("price"));
-	            
-	            list.add(book);
+	            list.add(new Book()
+	    			.setId(rset.getInt("id"))
+	    			.setTitle(rset.getString("title"))
+	    			.setAuthor(rset.getString("author"))
+	    			.setPrice(rset.getFloat("price")));
 	        }
 	        
 	        return list;
@@ -77,16 +74,14 @@ public class BooksDao {
 	        
 	        rset = stmt.executeQuery(sqlStr);
 	        
-	        Book book = null;
-	        
 	        if (rset.next()) {
-	            book = new Book();
-	            book.setId(rset.getInt("id"));
-	            book.setTitle(rset.getString("title"));
-	            book.setAuthor(rset.getString("author"));
-	            book.setPrice(rset.getFloat("price"));
+	            return new Book()
+	            			.setId(rset.getInt("id"))
+	            			.setTitle(rset.getString("title"))
+	            			.setAuthor(rset.getString("author"))
+	            			.setPrice(rset.getFloat("price"));
 	        }
-	        return book;
+	        return null;
 	        
 		} catch (Exception e) {
 			throw e;
