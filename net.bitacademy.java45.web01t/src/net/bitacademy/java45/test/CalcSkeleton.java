@@ -20,6 +20,7 @@ public class CalcSkeleton {
 		while(true) {
 			try {
 				s = ss.accept();
+				System.out.println("연결되었다!");
 		
 				in = new Scanner(s.getInputStream());
 				out = new PrintStream(s.getOutputStream());
@@ -39,6 +40,7 @@ public class CalcSkeleton {
 				in.close();
 				s.close();
 			} catch(Exception e) {}
+			System.out.println("종료되었다!");
 		}
 	}
 
