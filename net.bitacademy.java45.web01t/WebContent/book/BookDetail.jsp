@@ -15,5 +15,20 @@
 가격: $${book.price}<br>
 수량: ${book.qty}<br>
 </c:if>
-
+<p>
+<a href="delete?id=${book.id}">[삭제]</a>
+</p>
 </body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+

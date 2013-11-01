@@ -127,6 +127,28 @@ public class BooksDao {
 		}
 		
 	}
+
+	public void delete(int id) throws Exception {
+		Connection conn = null;
+	    PreparedStatement stmt = null;
+	    
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
+	        stmt = conn.prepareStatement(
+	        		"DELETE FROM books WHERE id=?");
+	        stmt.setInt(1, id);
+	        stmt.executeUpdate();
+	        
+		} catch (Exception e) {
+			throw e;
+			
+		} finally {
+			try {if (stmt != null) stmt.close();} catch(Exception e) {}
+	        try {if (conn != null) conn.close();} catch(Exception e) {}
+		}		
+	}
 }
 
 
