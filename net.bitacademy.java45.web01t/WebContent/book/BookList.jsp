@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html><head><title>책 목록</title></head><body>
+<jsp:include page="/Header.jsp"/>
 <h2>책 목록3</h2>
 <p><a href="add">[새 책]</a></p>
 <c:forEach var="book" items="${requestScope.list}">
@@ -14,4 +15,5 @@
 	<a href="detail?id=${book.id}">${book.title}</a>, 
 	$${book.price}</p>
 </c:forEach>
+<jsp:include page="/Tail.jsp"/>
 </body></html>

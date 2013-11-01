@@ -1,6 +1,7 @@
 package net.bitacademy.java45.servlets.book;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,6 +41,26 @@ public class BookAddServlet extends HttpServlet {
 		BooksDao booksDao = new BooksDao();
 		try {
 			booksDao.insert(book);
+			
+			// Redirect 처리
+			/*
+			 * Redirect는 클라이언트에게 본문을 보내지 않습니다.
+			 */
+			// test 출력
+			PrintWriter out = response.getWriter();
+			out.println("a");
+			out.println("b");
+			
+			response.sendRedirect("list");
+			
+			
+			
+			// Refresh 처리 
+			/*
+			RequestDispatcher rd = 
+					request.getRequestDispatcher("/book/BookAdd.jsp");
+			rd.forward(request, response);
+			*/
 		} catch (Exception e) {
 			request.setAttribute("error", e);
 			RequestDispatcher rd = 
