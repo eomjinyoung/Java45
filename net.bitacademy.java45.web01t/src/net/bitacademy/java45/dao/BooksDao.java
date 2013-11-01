@@ -149,6 +149,34 @@ public class BooksDao {
 	        try {if (conn != null) conn.close();} catch(Exception e) {}
 		}		
 	}
+
+	public void update(Book book) throws Exception {
+		Connection conn = null;
+	    PreparedStatement stmt = null;
+	    
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
+	        stmt = conn.prepareStatement(
+	        		"UPDATE books SET title=?,author=?,price=?,qty=?"
+	        		+ " WHERE id=?");
+	        stmt.setString(1, book.getTitle());
+	        stmt.setString(2, book.getAuthor());
+	        stmt.setFloat(3, book.getPrice());
+	        stmt.setInt(4, book.getQty());
+	        stmt.setInt(5, book.getId());
+	        stmt.executeUpdate();
+	        
+		} catch (Exception e) {
+			throw e;
+			
+		} finally {
+			try {if (stmt != null) stmt.close();} catch(Exception e) {}
+	        try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+		
+	}
 }
 
 
