@@ -13,6 +13,7 @@
 저자: ${book.author}<br> 
 제목: ${book.title}<br> 
 가격: $${book.price}<br>
+수량: ${book.qty}<br>
 </c:if>
 
 </body></html>
