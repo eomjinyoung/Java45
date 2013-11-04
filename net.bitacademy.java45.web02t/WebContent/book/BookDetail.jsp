@@ -16,9 +16,9 @@
 수량: ${book.qty}<br>
 </c:if>
 <p>
-<a href="update?id=${book.id}">[변경]</a>
-<a href="delete?id=${book.id}">[삭제]</a>
-<a href="list">[목록]</a>
+<a href="update.do?id=${book.id}">[변경]</a>
+<a href="delete.do?id=${book.id}">[삭제]</a>
+<a href="list.do">[목록]</a>
 </p>
 </body></html>
 

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.bitacademy.java45.controls.Action;
+import net.bitacademy.java45.controls.BookAddControl;
+import net.bitacademy.java45.controls.BookDetailControl;
 import net.bitacademy.java45.controls.BookListControl;
 
 @SuppressWarnings("serial")
@@ -44,9 +47,20 @@ public class DispatcherServlet extends HttpServlet {
 		String requestUrl = request.getServletPath();
 		String viewUrl = null;
 		try {
+			Action control = null;
 			if (requestUrl.equals("/book/list.do")) {
-				BookListControl control = new BookListControl();
-				viewUrl = control.execute(model);
+				control = new BookListControl();
+			} else if (requestUrl.equals("/book/detail.do")) {
+				control = new BookDetailControl();
+			} else if (requestUrl.equals("/book/add.do")) {
+				control = new BookAddControl();
+			}
+			
+			viewUrl = control.execute(model);
+			
+			if (viewUrl.startsWith("redirect:")) {
+				response.sendRedirect(viewUrl.substring(9));
+				return;
 			}
 			
 			//4. 바구니에 담긴 값을 꺼내서 ServletRequest에 옮겨 싣는다.

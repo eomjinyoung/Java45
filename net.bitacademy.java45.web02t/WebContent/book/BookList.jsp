@@ -8,11 +8,11 @@
 <html><head><title>책 목록</title></head><body>
 <jsp:include page="/Header.jsp"/>
 <h2>책 목록3</h2>
-<p><a href="add">[새 책]</a></p>
+<p><a href="add.do">[새 책]</a></p>
 <c:forEach var="book" items="${requestScope.list}">
 	<p><input type='checkbox' name='id' value='${book.id}' />
 	${book.author}, 
-	<a href="detail?id=${book.id}">${book.title}</a>, 
+	<a href="detail.do?id=${book.id}">${book.title}</a>, 
 	$${book.price}</p>
 </c:forEach>
 <jsp:include page="/Tail.jsp"/>
