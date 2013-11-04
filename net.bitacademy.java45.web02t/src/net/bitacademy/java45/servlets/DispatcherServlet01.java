@@ -4,18 +4,22 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.bitacademy.java45.controls.Action;
+import net.bitacademy.java45.controls.BookAddControl;
+import net.bitacademy.java45.controls.BookDeleteControl;
+import net.bitacademy.java45.controls.BookDetailControl;
+import net.bitacademy.java45.controls.BookListControl;
+import net.bitacademy.java45.controls.BookUpdateControl;
 
 @SuppressWarnings("serial")
-@WebServlet("*.do")
-public class DispatcherServlet extends HttpServlet {
+//@WebServlet("*.do")
+public class DispatcherServlet01 extends HttpServlet {
 	@Override
 	protected void doGet(
 			HttpServletRequest request, HttpServletResponse response)
@@ -42,14 +46,20 @@ public class DispatcherServlet extends HttpServlet {
 		//1) /web02 ==> request.getContextPath()
 		//2) /book/list ==> request.getServletPath()
 		//3) /web02/book/list ==> request.getRequestURI();
-		String servletPath = request.getServletPath();
+		String requestUrl = request.getServletPath();
 		String viewUrl = null;
 		try {
-			ServletContext ctx = this.getServletContext();
-			
-			Action control = (Action)ctx.getAttribute(servletPath);
-			if (control == null) {
-				throw new Exception("서블릿을 찾을 수 없습니다.");
+			Action control = null;
+			if (requestUrl.equals("/book/list.do")) {
+				control = new BookListControl();
+			} else if (requestUrl.equals("/book/detail.do")) {
+				control = new BookDetailControl();
+			} else if (requestUrl.equals("/book/add.do")) {
+				control = new BookAddControl();
+			} else if (requestUrl.equals("/book/delete.do")) {
+				control = new BookDeleteControl();
+			} else if (requestUrl.equals("/book/update.do")) {
+				control = new BookUpdateControl();
 			}
 			
 			viewUrl = control.execute(model);

@@ -5,13 +5,8 @@ import java.util.Map;
 import net.bitacademy.java45.dao.BooksDao;
 import net.bitacademy.java45.vo.Book;
 
-public class BookAddControl implements Action {
-	BooksDao booksDao;
-	
-	public void setBooksDao(BooksDao booksDao) {
-		this.booksDao = booksDao;
-	}
-	
+public class BookAddControl01 implements Action {
+
 	@Override
 	public String execute(Map<String,Object> model) throws Exception {
 		if (model.get("title") == null) {
@@ -26,7 +21,7 @@ public class BookAddControl implements Action {
 				.setQty(Integer.parseInt(((
 						String[])model.get("qty"))[0] ));
 			
-			booksDao.insert(book);
+			new BooksDao().insert(book);
 			
 			return "redirect:list.do";
 		}

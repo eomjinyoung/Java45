@@ -5,15 +5,11 @@ import java.util.Map;
 import net.bitacademy.java45.dao.BooksDao;
 import net.bitacademy.java45.vo.Book;
 
-public class BookUpdateControl implements Action {
-	BooksDao booksDao;
-	
-	public void setBooksDao(BooksDao booksDao) {
-		this.booksDao = booksDao;
-	}
-	
+public class BookUpdateControl01 implements Action {
 	@Override
 	public String execute(Map<String,Object> model) throws Exception {
+		BooksDao booksDao = new BooksDao();
+		
 		if (model.get("title") == null) {
 			Book book = booksDao.selectOne(
 					Integer.parseInt( 

@@ -1,29 +1,25 @@
 package net.bitacademy.java45.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.bitacademy.java45.utils.ConnectionPool;
 import net.bitacademy.java45.vo.Book;
 
-public class BooksDao {
-	ConnectionPool connectionPool;
-
-	public void setConnectionPool(ConnectionPool connectionPool) {
-		this.connectionPool = connectionPool;
-	}
-
+public class BooksDao01 {
 	public List<Book> selectList(String[] keywords) throws Exception {
 		Connection conn = null;
 	    Statement stmt = null;
 	    ResultSet rset = null;
 	    
 		try {
-	        conn = connectionPool.getConnection();  
+			Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
 	        stmt = conn.createStatement();
 	         
 	        String sqlStr = "SELECT * FROM books WHERE";
@@ -59,7 +55,7 @@ public class BooksDao {
 		} finally {
 			try {if (rset != null) rset.close();} catch(Exception e) {}
 			try {if (stmt != null) stmt.close();} catch(Exception e) {}
-	        if (conn != null) connectionPool.returnConnection(conn);
+	        try {if (conn != null) conn.close();} catch(Exception e) {}
 		}
 	}
 
@@ -69,7 +65,9 @@ public class BooksDao {
 	    ResultSet rset = null;
 	    
 		try {
-			conn = connectionPool.getConnection();   
+			Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
 	        stmt = conn.createStatement();
 	         
 	        String sqlStr = "SELECT * FROM books WHERE id=" + id;
@@ -92,7 +90,7 @@ public class BooksDao {
 		} finally {
 			try {if (rset != null) rset.close();} catch(Exception e) {}
 			try {if (stmt != null) stmt.close();} catch(Exception e) {}
-			if (conn != null) connectionPool.returnConnection(conn);
+	        try {if (conn != null) conn.close();} catch(Exception e) {}
 		}
 	}
 
@@ -107,7 +105,9 @@ public class BooksDao {
 	    PreparedStatement stmt = null;
 	    
 		try {
-			conn = connectionPool.getConnection();   
+			Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
 	        stmt = conn.prepareStatement(
 	        		"INSERT INTO books(title,author,price,qty)"
 	        		+ " VALUES(?,?,?,?)");
@@ -122,7 +122,7 @@ public class BooksDao {
 			
 		} finally {
 			try {if (stmt != null) stmt.close();} catch(Exception e) {}
-			if (conn != null) connectionPool.returnConnection(conn);
+	        try {if (conn != null) conn.close();} catch(Exception e) {}
 		}
 		
 	}
@@ -132,7 +132,9 @@ public class BooksDao {
 	    PreparedStatement stmt = null;
 	    
 		try {
-			conn = connectionPool.getConnection();   
+			Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
 	        stmt = conn.prepareStatement(
 	        		"DELETE FROM books WHERE id=?");
 	        stmt.setInt(1, id);
@@ -143,7 +145,7 @@ public class BooksDao {
 			
 		} finally {
 			try {if (stmt != null) stmt.close();} catch(Exception e) {}
-			if (conn != null) connectionPool.returnConnection(conn);
+	        try {if (conn != null) conn.close();} catch(Exception e) {}
 		}		
 	}
 
@@ -152,7 +154,9 @@ public class BooksDao {
 	    PreparedStatement stmt = null;
 	    
 		try {
-			conn = connectionPool.getConnection();  
+			Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost/ebookshop", "root", "1234");  
 	        stmt = conn.prepareStatement(
 	        		"UPDATE books SET title=?,author=?,price=?,qty=?"
 	        		+ " WHERE id=?");
@@ -168,7 +172,7 @@ public class BooksDao {
 			
 		} finally {
 			try {if (stmt != null) stmt.close();} catch(Exception e) {}
-			if (conn != null) connectionPool.returnConnection(conn);
+	        try {if (conn != null) conn.close();} catch(Exception e) {}
 		}
 		
 	}
