@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.bitacademy.java45.controls.Action;
 import net.bitacademy.java45.controls.BookAddControl;
+import net.bitacademy.java45.controls.BookDeleteControl;
 import net.bitacademy.java45.controls.BookDetailControl;
 import net.bitacademy.java45.controls.BookListControl;
 
@@ -54,6 +55,8 @@ public class DispatcherServlet extends HttpServlet {
 				control = new BookDetailControl();
 			} else if (requestUrl.equals("/book/add.do")) {
 				control = new BookAddControl();
+			} else if (requestUrl.equals("/book/delete.do")) {
+				control = new BookDeleteControl();
 			}
 			
 			viewUrl = control.execute(model);
